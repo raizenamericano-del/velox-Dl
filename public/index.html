@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VELOX — Downloader All-in-One | TikTok, Instagram, YouTube, X, Facebook & 14 Platform</title>
+<meta name="description" content="Download video, foto, dan MP3 dari TikTok, Instagram, YouTube, X/Twitter, Facebook, Pinterest, Threads, RedNote, Snapchat, LinkedIn dan 14 platform lain. Tanpa watermark, HD, gratis, tanpa daftar.">
+<meta name="theme-color" content="#06060a">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="VELOX — Satu link, semua platform">
+<meta property="og:description" content="Downloader premium tanpa iklan membandel. Tanpa watermark, kualitas HD, MP3 instan.">
+<meta property="og:type" content="website">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<div class="bg-fx" aria-hidden="true">
+  <span class="orb orb-a"></span><span class="orb orb-b"></span><span class="orb orb-c"></span>
+  <div class="grid-lines"></div>
+</div>
+
+<a class="skip-link" href="#main">Lompat ke konten</a>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href="/" aria-label="VELOX beranda">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M13 2 4.5 13.5H11l-1 8.5 9-12h-6.6L13 2Z"/></svg>
+      </span>
+      <span class="brand-text">VELOX</span>
+      <span class="brand-dot" aria-hidden="true"></span>
+    </a>
+    <nav class="main-nav" aria-label="Navigasi utama">
+      <a href="#platforms">Platform</a>
+      <a href="#features">Fitur</a>
+      <a href="#api">API</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="head-actions">
+      <button class="ghost-btn" id="historyBtn" type="button" aria-label="Riwayat download">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg>
+        <span class="hide-sm">Riwayat</span>
+        <span class="pill-count" id="historyCount" hidden>0</span>
+      </button>
+      <span class="status-pill" id="statusPill" title="Status engine">
+        <span class="dot"></span><span id="statusText">cek…</span>
+      </span>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+  <section class="hero wrap">
+    <div class="hero-badge reveal">
+      <span class="sparkle" aria-hidden="true">✦</span> Gratis · Tanpa daftar · Tanpa iklan pop-up
+    </div>
+    <h1 class="hero-title reveal d1">Satu link.<br><span class="grad">Semua platform.</span></h1>
+    <p class="hero-sub reveal d2">
+      Tempel link dari <strong>TikTok, Instagram, YouTube, X, Facebook</strong> dan 9 platform lain.
+      VELOX langsung memberi video <strong>tanpa watermark</strong>, foto HD, atau MP3 — dalam hitungan detik.
+    </p>
+
+    <form class="dl-form reveal d3" id="dlForm" autocomplete="off" novalidate>
+      <div class="input-shell" id="inputShell">
+        <span class="input-icon" id="platformIcon" aria-hidden="true"></span>
+        <label class="sr-only" for="urlInput">Link video atau foto</label>
+        <input id="urlInput" name="url" type="url" inputmode="url" spellcheck="false"
+               placeholder="Tempel link di sini… (TikTok, Instagram, YouTube, dll)"
+               aria-describedby="formHint">
+        <button class="paste-btn" type="button" id="pasteBtn" title="Tempel dari clipboard">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+          <span class="hide-sm">Tempel</span>
+        </button>
+        <button class="go-btn" type="submit" id="goBtn">
+          <span class="go-label">Ambil</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+      <p class="form-hint" id="formHint">
+        <span id="hintText">Mendukung 14 platform · hasil di-cache 10 menit biar ngebut</span>
+      </p>
+    </form>
+
+    <ul class="trust-row reveal d4" aria-label="Jaminan layanan">
+      <li><span class="tick" aria-hidden="true">✓</span> Tanpa Watermark</li>
+      <li><span class="tick" aria-hidden="true">✓</span> Kualitas HD</li>
+      <li><span class="tick" aria-hidden="true">✓</span> MP3 Instan</li>
+      <li><span class="tick" aria-hidden="true">✓</span> Tanpa Login</li>
+    </ul>
+  </section>
+
+  <!-- ── RESULT ───────────────────────────────────────────────────────── -->
+  <section class="wrap result-zone" id="resultZone" aria-live="polite" hidden></section>
+
+  <!-- ── PLATFORMS ────────────────────────────────────────────────────── -->
+  <section class="wrap section" id="platforms">
+    <header class="section-head">
+      <h2 class="section-title">14 platform, satu kotak input</h2>
+      <p class="section-sub">TIER 1 &amp; 2 jadi prioritas. Sisanya ditangani engine universal yang mendukung 1.800+ situs.</p>
+    </header>
+    <div class="tier-legend" role="list">
+      <span role="listitem"><i class="t1"></i> Tier 1 — prioritas utama</span>
+      <span role="listitem"><i class="t2"></i> Tier 2 — wajib</span>
+      <span role="listitem"><i class="t3"></i> Tier 3 — bonus</span>
+    </div>
+    <div class="platform-grid" id="platformGrid"></div>
+  </section>
+
+  <!-- ── FEATURES ─────────────────────────────────────────────────────── -->
+  <section class="wrap section" id="features">
+    <header class="section-head">
+      <h2 class="section-title">Dibangun untuk cepat &amp; tidak rewel</h2>
+      <p class="section-sub">Bukan sekadar tempel-tempel scraper. Ada fallback, cache, dan proteksi di setiap lapisan.</p>
+    </header>
+    <div class="feature-grid">
+      <article class="feature-card">
+        <span class="f-icon" aria-hidden="true">⚡</span>
+        <h3>Rata-rata 1 detik</h3>
+        <p>Fast-path API untuk TikTok, hasil di-cache 10 menit, dan streaming langsung tanpa menunggu file jadi.</p>
+      </article>
+      <article class="feature-card">
+        <span class="f-icon" aria-hidden="true">🛡️</span>
+        <h3>Fallback berlapis</h3>
+        <p>Tiap platform punya 2–3 metode. Kalau satu mati karena perubahan situs, berikutnya otomatis mengambil alih.</p>
+      </article>
+      <article class="feature-card">
+        <span class="f-icon" aria-hidden="true">🎵</span>
+        <h3>MP3 &amp; audio asli</h3>
+        <p>Ekstrak audio jadi MP3 192kbps, atau ambil track audio asli tanpa re-encode sama sekali.</p>
+      </article>
+      <article class="feature-card">
+        <span class="f-icon" aria-hidden="true">🖼️</span>
+        <h3>Carousel &amp; slide foto</h3>
+        <p>Post banyak foto? Semua slide diambil sekaligus dalam kualitas asli, bukan screenshot.</p>
+      </article>
+      <article class="feature-card">
+        <span class="f-icon" aria-hidden="true">🔒</span>
+        <h3>Tanpa simpan datamu</h3>
+        <p>Tidak ada akun, tidak ada tracking. Riwayat cuma tersimpan di browser-mu sendiri (localStorage).</p>
+      </article>
+      <article class="feature-card">
+        <span class="f-icon" aria-hidden="true">🧠</span>
+        <h3>Pesan error manusiawi</h3>
+        <p>Link privat? Sudah dihapus? Kamu diberi tahu alasannya + saran, bukan tumpukan kode error.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ─────────────────────────────────────────────────── -->
+  <section class="wrap section" id="how">
+    <header class="section-head"><h2 class="section-title">Tiga langkah, selesai</h2></header>
+    <ol class="steps">
+      <li><span class="step-n">1</span><div><h3>Tempel link</h3><p>Salin link dari aplikasi mana pun — VELOX otomatis mengenali platformnya.</p></div></li>
+      <li><span class="step-n">2</span><div><h3>Pilih kualitas</h3><p>Video HD, MP3, atau foto asli. Ukuran file ditampilkan sebelum download.</p></div></li>
+      <li><span class="step-n">3</span><div><h3>Download</h3><p>File mengalir langsung ke perangkatmu. Tanpa iklan jebakan, tanpa redirect.</p></div></li>
+    </ol>
+  </section>
+
+  <!-- ── API ──────────────────────────────────────────────────────────── -->
+  <section class="wrap section" id="api">
+    <header class="section-head">
+      <h2 class="section-title">Punya aplikasi sendiri? Pakai API-nya</h2>
+      <p class="section-sub">VELOX menyertakan JSON API. Tanpa key untuk pemakaian wajar — rate limit berlaku per IP.</p>
+    </header>
+    <div class="api-box">
+      <div class="api-tabs" role="tablist">
+        <button class="api-tab is-active" role="tab" data-pane="p-resolve" aria-selected="true">Resolve</button>
+        <button class="api-tab" role="tab" data-pane="p-download" aria-selected="false">Download</button>
+        <button class="api-tab" role="tab" data-pane="p-health" aria-selected="false">Health</button>
+      </div>
+      <div class="api-pane is-active" id="p-resolve">
+        <pre><code>curl -X POST <span class="api-base"></span>/api/resolve \
+  -H 'Content-Type: application/json' \
+  -d '{"url":"https://www.tiktok.com/@tiktok/video/7460937381265411370"}'</code></pre>
+        <p class="api-note">Balikan: <code>title</code>, <code>thumbnail</code>, <code>author</code>, dan <code>items[].formats[]</code> berisi tiap opsi kualitas beserta URL download.</p>
+      </div>
+      <div class="api-pane" id="p-download">
+        <pre><code># proxy CDN langsung (cepat, tanpa encode)
+GET /api/dl?t=direct&amp;u=&lt;cdn-url&gt;&amp;n=&lt;nama-file&gt;
+
+# lewat engine (merge video+audio / konversi MP3)
+GET /api/dl?t=engine&amp;u=&lt;page-url&gt;&amp;f=&lt;format&gt;&amp;a=mp3</code></pre>
+        <p class="api-note">Semua URL di dalam respons <code>/api/resolve</code> sudah menunjuk ke endpoint ini — tinggal pakai.</p>
+      </div>
+      <div class="api-pane" id="p-health">
+        <pre><code>curl <span class="api-base"></span>/api/health
+# {"status":"ok","engine":{"version":"…","ffmpeg":true},"cache":{…}}</code></pre>
+        <p class="api-note">Dipakai Railway sebagai health check, dan menampilkan versi engine + statistik cache.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ──────────────────────────────────────────────────────────── -->
+  <section class="wrap section" id="faq">
+    <header class="section-head"><h2 class="section-title">Pertanyaan yang sering muncul</h2></header>
+    <div class="faq">
+      <details><summary>Apakah benar-benar gratis? Ada batasnya?</summary><p>Gratis, tanpa akun. Yang dibatasi hanya jumlah request per menit per IP supaya server tidak kewalahan — tunggu sebentar lalu lanjut lagi.</p></details>
+      <details><summary>Kenapa video TikTok saya tidak ada watermarknya?</summary><p>VELOX mengambil berkas sumber dari CDN TikTok, bukan hasil render aplikasi. Karena itu watermark tidak pernah ikut terbawa.</p></details>
+      <details><summary>Video Instagram saya gagal diambil. Kenapa?</summary><p>Biasanya karena post bersifat privat, dihapus, atau butuh login. VELOX memakai dua metode (engine + halaman embed publik). Kalau keduanya gagal, konten memang tidak bisa diakses tanpa sesi akun.</p></details>
+      <details><summary>Apakah file saya disimpan di server?</summary><p>Tidak. Media dialirkan langsung ke perangkatmu. Server hanya memakai berkas sementara saat harus menggabung video+audio, lalu dihapus begitu selesai.</p></details>
+      <details><summary>Bisakah download playlist YouTube?</summary><p>Bisa. Tempel link playlist, VELOX menampilkan daftar videonya (maks. 30 item) dan tiap item bisa diunduh sendiri.</p></details>
+      <details><summary>Legal tidak sih?</summary><p>VELOX hanya mengambil konten publik yang memang bisa kamu lihat di browser. Hak cipta tetap milik pembuatnya — gunakan untuk arsip pribadi, dan minta izin sebelum memakai ulang karya orang lain.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <div class="foot-brand">
+      <span class="brand-mark sm" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13 2 4.5 13.5H11l-1 8.5 9-12h-6.6L13 2Z"/></svg>
+      </span>
+      <div>
+        <strong>VELOX</strong>
+        <p>Downloader all-in-one. Dibangun dengan yt-dlp + fallback API per platform.</p>
+      </div>
+    </div>
+    <div class="foot-meta">
+      <p>Engine <span id="footEngine">yt-dlp</span> · <span id="footPlatforms">14</span> platform</p>
+      <p class="foot-legal">Hormati hak cipta &amp; ketentuan layanan tiap platform. Hanya untuk konten publik dan penggunaan pribadi.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ── HISTORY DRAWER ─────────────────────────────────────────────────── -->
+<aside class="drawer" id="historyDrawer" aria-hidden="true" aria-label="Riwayat download">
+  <div class="drawer-head">
+    <h2>Riwayat</h2>
+    <div class="drawer-actions">
+      <button class="ghost-btn sm" id="clearHistory" type="button">Hapus semua</button>
+      <button class="icon-btn" id="closeHistory" type="button" aria-label="Tutup riwayat">✕</button>
+    </div>
+  </div>
+  <div class="drawer-body" id="historyList"></div>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script src="/js/icons.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>

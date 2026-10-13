@@ -1,0 +1,17 @@
+# Build-time only files. Keep the image small and reproducible.
+node_modules
+npm-debug.log
+.git
+.github
+.gitignore
+test
+tmp
+vendor
+.tmp
+*.md
+!README.md
+.env
+.env.*
+!.env.example
+Dockerfile
+.dockerignore

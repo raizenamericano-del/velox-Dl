@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+
+# runtime artefacts
+vendor/
+.tmp/
+*.log
+npm-debug.log*
+
+# env & secrets (cookies.txt grants access to your accounts!)
+.env
+.env.*
+!.env.example
+cookies.txt
+*.cookies.txt
+
+# editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# build / coverage
+dist/
+build/
+coverage/
+
+# sandbox leftovers from local research
+tmp/

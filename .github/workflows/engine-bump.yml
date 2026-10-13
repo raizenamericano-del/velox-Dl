@@ -1,0 +1,31 @@
+name: Engine freshness
+
+# Platforms change their markup often. This job tells you when the pinned
+# yt-dlp release is more than a few days behind, so a silent breakage does not
+# turn into "the site stopped working" a week later.
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'   # every Monday 03:00 UTC
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compare installed vs latest yt-dlp
+        id: ver
+        run: |
+          python -m pip install --quiet --upgrade yt-dlp
+          INSTALLED=$(yt-dlp --version)
+          LATEST=$(curl -fsSL https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest | grep -o '"tag_name": *"[^"]*"' | cut -d'"' -f4)
+          echo "installed=$INSTALLED" >> "$GITHUB_OUTPUT"
+          echo "latest=$LATEST"        >> "$GITHUB_OUTPUT"
+          echo "Installed: $INSTALLED / Latest: $LATEST"
+
+      - name: Warn when behind
+        if: steps.ver.outputs.installed != steps.ver.outputs.latest
+        run: |
+          echo "::warning::yt-dlp is behind (${{ steps.ver.outputs.installed }} → ${{ steps.ver.outputs.latest }}). Redeploy to pick up the newest extractors."

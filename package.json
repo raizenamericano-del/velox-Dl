@@ -1,0 +1,40 @@
+{
+  "name": "velox",
+  "version": "1.0.0",
+  "description": "VELOX — all-in-one social media downloader. One link, every platform.",
+  "private": true,
+  "main": "server/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "postinstall": "node scripts/ensure-ytdlp.js",
+    "ensure-engine": "node scripts/ensure-ytdlp.js",
+    "test": "node --test test/unit/ test/frontend/",
+    "test:live": "node --test test/live/",
+    "smoke": "node test/smoke.js",
+    "test:all": "node --test test/unit/ test/frontend/ test/live/"
+  },
+  "dependencies": {
+    "compression": "^1.8.1",
+    "express": "^4.21.2"
+  },
+  "keywords": [
+    "downloader",
+    "yt-dlp",
+    "tiktok",
+    "instagram",
+    "youtube",
+    "twitter",
+    "facebook",
+    "pinterest",
+    "social-media",
+    "no-watermark"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "jsdom": "^29.1.1"
+  }
+}
